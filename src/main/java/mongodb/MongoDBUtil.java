@@ -11,6 +11,18 @@ import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.ServerAddress;  
   
+/**
+ * 
+ * @ClassName: MongoDBUtil 
+ * @Description: 
+ * @author jerome_s@qq.com
+ * @date 2015年11月3日 下午5:07:18 
+ *	<dependency>
+		<groupId>org.mongodb</groupId>
+		<artifactId>mongo-java-driver</artifactId>
+		<version>3.1.0</version>
+	</dependency>
+ */
 @SuppressWarnings("deprecation")
 public class MongoDBUtil {  
     static MongoClient client;  
