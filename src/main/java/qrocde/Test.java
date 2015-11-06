@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
@@ -22,7 +23,10 @@ import com.google.zxing.common.BitMatrix;
  */
 public class Test {
 	public static void main(String[] args) throws Exception {
-		getQrcode("backsdf3ksdfkd333424");
+		for (int i = 0; i < 10; i++) {
+			getQrcode("back"+UUID.randomUUID());
+		}
+		
 	}
 
 	/**
@@ -43,7 +47,7 @@ public class Test {
 		BitMatrix bitMatrix = new MultiFormatWriter().encode(text, BarcodeFormat.QR_CODE, width, height, hints);
 		BitMatrix bitMatrix2 = MatrixToImageWriter.deleteWhite(bitMatrix);
 		// 生成二维码
-		File outputFile = new File("d:" + File.separator + text + ".png");
+		File outputFile = new File("d:" + File.separator +"back"+File.separator+ text + ".png");
 		MatrixToImageWriter.writeToFile(bitMatrix2, format, outputFile);
 	}
 
