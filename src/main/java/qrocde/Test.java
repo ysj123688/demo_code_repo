@@ -1,7 +1,14 @@
 package qrocde;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -23,12 +30,69 @@ import com.google.zxing.common.BitMatrix;
  */
 public class Test {
 	public static void main(String[] args) throws Exception {
-		for (int i = 0; i < 10; i++) {
-			getQrcode("back"+UUID.randomUUID());
+		for (int i = 0; i < 10000; i++) {
+//			System.out.println("back"+UUID.randomUUID()+" "+i);
+			writerTxt("D://pack.txt","pack"+UUID.randomUUID());
 		}
-		
+//		readTxt("D://pack.txt");
 	}
 
+	/**
+	 * 写入txt
+	 * 
+	 * @param path
+	 *            具体路径
+	 * @param str
+	 *            写入内容
+	 */
+	private static void writerTxt(String path, String str) {
+		BufferedWriter fw = null;
+		try {
+			File file = new File(path);
+			fw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, true), "UTF-8")); // 指定编码格式，以免读取时中文字符异常
+			fw.append(str);
+			fw.newLine();
+			fw.flush(); // 全部写入缓存中的内容
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (fw != null) {
+				try {
+					fw.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+		
+	/**
+	 * 读txt文件
+	 * @param path 具体路径
+	 */
+	@SuppressWarnings("unused")
+	private static void readTxt(String path) {
+		String filePath = path; // 文件和该类在同个目录下
+		BufferedReader reader = null;
+		try {
+			reader = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), "UTF-8")); // 指定读取文件的编码格式，要和写入的格式一致，以免出现中文乱码,
+			String str = null;
+			while ((str = reader.readLine()) != null) {
+				System.out.println(str);
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				reader.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+		
 	/**
 	 * 生成二维码
 	 * 
@@ -36,6 +100,7 @@ public class Test {
 	 * @throws WriterException
 	 * @throws IOException
 	 */
+	@SuppressWarnings("unused")
 	private static void getQrcode(String text) throws Exception {
 		int width = 147;
 		int height = 147;
@@ -47,7 +112,7 @@ public class Test {
 		BitMatrix bitMatrix = new MultiFormatWriter().encode(text, BarcodeFormat.QR_CODE, width, height, hints);
 		BitMatrix bitMatrix2 = MatrixToImageWriter.deleteWhite(bitMatrix);
 		// 生成二维码
-		File outputFile = new File("d:" + File.separator +"back"+File.separator+ text + ".png");
+		File outputFile = new File("d:" + File.separator +"pack"+File.separator+ text + ".png");
 		MatrixToImageWriter.writeToFile(bitMatrix2, format, outputFile);
 	}
 
