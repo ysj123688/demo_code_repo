@@ -1,8 +1,10 @@
 package redis;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import redis.clients.jedis.Jedis;
 
@@ -32,12 +34,18 @@ public class TestRedis {
 	 * redis存储字符串
 	 */
 	public void testString() {
-//		jedis.set("name", "Jerome苏");
-//		jedis.expire("name", 60); // 设置存活时间
+		jedis.set("name", "Jerome苏");
+		jedis.expire("name", 60); // 设置存活时间
 		// jedis.del("name"); //删除某个键
 
 		System.out.println("name----->>>" + jedis.get("name"));
+		System.out.println("name----->>>" + jedis.lrange("201509180033", 0, -1));
+		System.out.println("name----->>>" + jedis.keys("*").toString());
+		System.out.println("name----->>>" + jedis.get("201509180033"));
+		
 		System.out.println("name----->>>" + jedis.info());
+//		System.out.println(jedis.select(3));
+		
 	}
 
 	/**
