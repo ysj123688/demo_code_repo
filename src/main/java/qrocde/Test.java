@@ -30,9 +30,10 @@ import com.google.zxing.common.BitMatrix;
  */
 public class Test {
 	public static void main(String[] args) throws Exception {
-		for (int i = 0; i < 10000; i++) {
+		for (int i = 0; i < 100; i++) {
 //			System.out.println("back"+UUID.randomUUID()+" "+i);
-			writerTxt("D://pack.txt","pack"+UUID.randomUUID());
+			writerTxt("D://bigp.txt","bigp"+UUID.randomUUID());
+			System.out.println(i);
 		}
 //		readTxt("D://pack.txt");
 	}
