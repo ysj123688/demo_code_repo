@@ -1,0 +1,21 @@
+package json;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+import net.sf.json.JSONObject;
+
+public class JsonTest {
+	public static void main(String[] args) {
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("legend", Arrays.asList(new String[] { "销售认购金额", "销售认购金额2" }));
+		map.put("category", Arrays.asList(new String[] { "年度认购金额", "年度认购指数", "全案认购金额", "全案认购指数" }));
+		map.put("series", Arrays.asList(new ArrayList<Integer>(Arrays.asList(21, 23, 28, 26)),
+				new ArrayList<Integer>(Arrays.asList(25, 22, 21, 21))));
+		JSONObject json = JSONObject.fromObject(map);
+		System.out.println(json.toString());
+	}
+}
