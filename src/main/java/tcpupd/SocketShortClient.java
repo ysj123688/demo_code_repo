@@ -2,6 +2,7 @@ package tcpupd;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
@@ -11,12 +12,13 @@ import java.net.UnknownHostException;
  * 客户端Socket
  * 
  * @author JeromeThinkPad
- * @see 《Java开发实战经典》
+ * @see 参考 1. 《Java开发实战经典》
+ * @see 参考 2. 网络
  *
  */
 public class SocketShortClient {
 	public static void main(String[] args) throws UnknownHostException, IOException {
-		new SocketShortClient().simple();
+		//new SocketShortClient().simple();
 	}
 
 	/**
@@ -25,6 +27,7 @@ public class SocketShortClient {
 	 * @throws UnknownHostException
 	 * @throws IOException
 	 */
+	@SuppressWarnings("unused")
 	private void echo() throws UnknownHostException, IOException {
 		Socket client = null; // 表示客 户端
 		client = new Socket("localhost", 8888);
@@ -66,4 +69,26 @@ public class SocketShortClient {
 		client.close();
 		buf.close();
 	}
+	
+	/**
+	 * 非阻塞模式
+	 * 
+	 * @throws UnknownHostException
+	 * @throws IOException
+	 */
+	@SuppressWarnings("unused")
+	private void unAccept() throws UnknownHostException, IOException {
+		Socket client = null;
+		client = new Socket("siponets.lz-qs.com", 1920);
+		InputStream in = null; // 接收流
+		// 接收服务器端响应(非阻塞)
+		byte[] buf = new byte[2048];
+		in = client.getInputStream();
+		int i = in.read(buf);
+		client.setSoTimeout(5000); // 超时时间五秒
+		String response = new String(buf, 12, i);
+		in.close();
+		client.close();
+	}
+	
 }
