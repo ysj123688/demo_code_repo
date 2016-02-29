@@ -16,7 +16,7 @@ import com.google.gson.reflect.TypeToken;
  */
 public class GsonTest {
 	public static void main(String[] args) {
-		json2Model();
+		list2Json();
 	}
 	
 	//序列化
