@@ -49,7 +49,7 @@ public class ResourceUtil {
 	 * @throws UnsupportedEncodingException 
 	 * 
 	* @Title: getZoom 
-	* @Description: TODO(获取区域) 
+	* @Description: 获取区域
 	* @param @param name
 	* @param @return    设定文件 
 	* @return String    返回类型 

@@ -41,6 +41,7 @@ public class GsonTest {
 		System.out.println(person.toString());
 	}
 	
+	//反序列化
 	public static void json2List() {
 		String str = "[{\"name\":\"name0\",\"age\":0},{\"name\":\"name1\",\"age\":5},{\"name\":\"name2\",\"age\":10}]";
 		Gson gson = new Gson();

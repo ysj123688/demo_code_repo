@@ -11,7 +11,7 @@ import redis.clients.jedis.Jedis;
 /**
  * 导入jar：jedis-2.1.0.jar、commons-pool-1.5.4.jar
  * @ClassName: TestRedis 
- * @Description: TODO(这里用一句话描述这个类的作用) 
+ * @Description: Jedis 
  * @author jerome_s@qq.com
  * @date 2015年10月14日 下午4:19:42 
  *<dependency>
