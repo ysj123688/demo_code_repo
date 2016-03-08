@@ -27,7 +27,7 @@ public class SocketLongClient {
 	 * @throws IOException
 	 */
 	private void simple() throws UnknownHostException, IOException {
-		int pushResultCode = 0;
+		//int pushResultCode = 0;
 		if (clientSocket == null || clientSocket.isClosed() == true || clientSocket.isConnected() == false) {
 			// LOG.warn("push message to psx, create a new socket !");
 			clientSocket = new Socket("localhost", 1920);
