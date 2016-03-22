@@ -13,10 +13,13 @@
 package util;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.TreeMap;
+
+import json.Person;
 
 public class ArrayUtil {
 	/**
@@ -29,6 +32,18 @@ public class ArrayUtil {
 	 * 
 	 */
 
+	/**
+	 * 对数组进行排序，(重写toString()进行排序区分)
+	 */
+	public static void arraySort() {
+		// Arrays.sort
+		Person[] arr = new Person[10];
+		Arrays.sort(arr, new Comparator<Person>() {
+			public int compare(Person o1, Person o2) {
+				return o1.toString().compareTo(o2.toString());
+			}
+		});
+	}
 	/**
 	 * 交换数组中两元素
 	 * 

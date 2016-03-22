@@ -11,13 +11,14 @@ import java.security.NoSuchAlgorithmException;
  */
 public class Arithmetic {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws NoSuchAlgorithmException {
+		System.out.println(sha1("0582a39c545648488051778916516618"));
 		// 快速排序
-		String[] strVoid = new String[] { "11", "66", "22", "0", "55", "22", "0", "32" };
+		/*String[] strVoid = new String[] { "11", "66", "22", "0", "55", "22", "0", "32" };
 		quickSort(strVoid, 0, strVoid.length - 1);
 		for (int i = 0; i < strVoid.length; i++) {
 			System.out.println(strVoid[i] + " ");
-		}
+		}*/
 	}
 
 	/**
