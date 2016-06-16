@@ -2,8 +2,9 @@
     <wb-module deploy-name="demo_code">
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resource"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp"/>
-        <property name="java-output-path" value="/demo_code/target/classes"/>
         <property name="context-root" value="demo_code"/>
+        <property name="java-output-path" value="/demo_code/target/classes"/>
     </wb-module>
 </project-modules>
