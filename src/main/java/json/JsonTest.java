@@ -16,7 +16,7 @@ public class JsonTest {
 //		map.put("series", Arrays.asList(new ArrayList<Integer>(Arrays.asList(21, 23, 28, 26)),
 //				new ArrayList<Integer>(Arrays.asList(25, 22, 21, 21))));
 		map.put("number", 2);
-		List<Long> list = new ArrayList<>();
+		List<Long> list = new ArrayList<Long>();
 		list.add(2L);
 		list.add(5L);
 		map.put("community", list);

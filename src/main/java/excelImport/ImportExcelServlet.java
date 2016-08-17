@@ -87,7 +87,7 @@ public class ImportExcelServlet extends HttpServlet {
 	 */
 	public JSONObject importCardExcel(InputStream inputStream) throws InvalidFormatException, IOException {
 
-		List<Card> cards = new ArrayList<>(); // 存放要插入数据库的集合
+		List<Card> cards = new ArrayList<Card>(); // 存放要插入数据库的集合
 		if (inputStream.available() == 0) {
 //			return DWZUtil.returnFailedJson("文件为空", "", "", "");
 		}

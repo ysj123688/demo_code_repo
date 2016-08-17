@@ -86,7 +86,7 @@ public class CollectionUtil {
 	 * @return List<List<Object>>
 	 */
 	public static List<List<?>> batchList(List<?> sourceList, int batchCount) {
-		List<List<?>> returnList = new ArrayList<>();
+		List<List<?>> returnList = new ArrayList<List<?>>();
 		int startIndex = 0; // 从第0个下标开始
 		while (startIndex < sourceList.size()) {
 			int endIndex = 0;

@@ -131,7 +131,7 @@ public class ExportExcelServlet extends HttpServlet {
 	 */
 	public List<ExportShipment> getExportShipments() {
 
-		List<ExportShipment> list = new ArrayList<>();
+		List<ExportShipment> list = new ArrayList<ExportShipment>();
 		
 		for (int i = 0; i < 20; i++) {
 			ExportShipment e = new ExportShipment();
