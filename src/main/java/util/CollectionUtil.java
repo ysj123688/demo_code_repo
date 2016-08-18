@@ -56,6 +56,7 @@ public class CollectionUtil {
 	 * @return
 	 * @throws Exception
 	 */
+	@SuppressWarnings({ "unchecked", "unused" })
 	private List<String> getListPage(int pageNo, int pageSize, List<String> vouchers) {
 		List<String> result = new ArrayList<String>();
 		if (CollectionUtils.isNotEmpty(vouchers)) {

@@ -38,12 +38,10 @@ public class SipmleDateFormatSecurityOK {
 }
 
 class MyThreadOK extends Thread {
-	private SimpleDateFormat sdf;
 	private String dateString;
 
 	public MyThreadOK(SimpleDateFormat sdf, String dateString) {
 		super();
-		this.sdf = sdf;
 		this.dateString = dateString;
 	}
 
