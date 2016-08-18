@@ -7,7 +7,7 @@ import java.security.NoSuchAlgorithmException;
  * 
  * @ClassName: EncryptUtil
  * @Description: 加密解密工具类
- * @author jerome_s@qq.com 整理
+ * @author jerome_s@qq.com
  * @date 2015年9月8日 下午2:02:50
  *
  */

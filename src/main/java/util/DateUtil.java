@@ -2,27 +2,202 @@ package util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 
 /**
- * 日期时间工具 Calendar的月份是从0开始的
  * 
- * @author haixiao
+ * @ClassName: DateUtil
+ * @Description: 日期相关操作工具类
+ * @author jerome_s@qq.com
+ * @date 2015年12月22日 下午4:35:53
+ *
  */
-@SuppressWarnings("all")
 public class DateUtil {
 	
-	public static final String YYYYMMDDHHMMSS="yyyy-MM-dd HH:mm:ss";
-	public static final String YYYYMMDD="yyyy-MM-dd";
+	public static void main(String[] args) {
+		String strDate = formatDate(new Date(), "yyyy-MM-dd hh:mm:ss");
+		System.out.println(strDate);
+//		System.out.println(strToDate(strDate,"yyyy-MM-dd"));
+//		
+//		System.out.println(plusDays(new Date(),2));
+//		System.out.println(minusHours(new Date(),8));
+//		System.out.println(plusDays(strToDate(strDate,"yyyy-MM-dd"),2));
+//		System.out.println(minusDays(strToDate(strDate,"yyyy-MM-dd"),2));
+//		System.out.println(compareDate(plusDays(strToDate(strDate,"yyyy-MM-dd"),2),plusDays(new Date(),2)));
+	}
+	
+	public static final String YYYYMMDDHHMMSS = "yyyy-MM-dd HH:mm:ss";
+	public static final String YYYYMMDD = "yyyy-MM-dd";
 	
 	/**
-	 * 获取某时间的中文星期（如：星期一、星期二），每星期的第一天是星期日
+	 * 格式化日期
 	 * 
-	 * @param date：日期
+	 * @param format
+	 *            要格式的格式比如"yyyy-MM-dd hh:mm:ss"
+	 * @return 字符串
+	 */
+	public static String formatDate(Date date, String format) {
+		return new SimpleDateFormat(format.trim()).format(date);
+	}
+	
+	/**
+	 * 字符串转日期
+	 * @param strDate 字符串的日期
+	 * @param formatStr 格式 比如"yyyy-MM-dd hh:mm:ss"
+	 * @return Date
+	 */
+	public static Date strToDate(String strDate, String formatStr) {
+		SimpleDateFormat format = new SimpleDateFormat(formatStr);
+		Date date = null;
+		try {
+			date = format.parse(strDate);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return date;
+	}
+	
+	/**
+	 * 时间比较
+	 * @param startDate
+	 *            开始时间
+	 * @param endDate
+	 *            结束时间
+	 * @return true:开始时间小于结束时间 
+	 * 			false:开始时间大于/等于结束时间
+	 * 			
+	 */
+	public static boolean compareDate(Date startDate, Date endDate) {
+		if (startDate.before(endDate)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	
+	
+	/**
+	 * 日期加几个月
+	 * @param date 原来的日期
+	 * @param plusDays 要加几个月
 	 * @return
 	 */
-	public static String getWeekCS(Date date) {
+	public static Date plusMonths(Date date, int plusMonths) {
+		LocalDateTime localDateTime = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
+		return Date.from(localDateTime.plusMonths(plusMonths).atZone(ZoneId.systemDefault()).toInstant());
+	}
+	
+	/**
+	 * 日期减几个月
+	 * @param date 原来的日期
+	 * @param minusDays 要加几个月
+	 * @return
+	 */
+	public static Date minusMonths(Date date, int minusMonths) {
+		LocalDateTime localDateTime = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
+		return Date.from(localDateTime.minusMonths(minusMonths).atZone(ZoneId.systemDefault()).toInstant());
+	}
+	
+	/**
+	 * 日期加几天
+	 * @param date 原来的日期
+	 * @param plusDays 要加几天
+	 * @return
+	 */
+	public static Date plusDays(Date date, int plusDays) {
+		LocalDateTime localDateTime = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
+		return Date.from(localDateTime.plusDays(plusDays).atZone(ZoneId.systemDefault()).toInstant());
+	}
+	
+	/**
+	 * 日期减几天
+	 * @param date 原来的日期
+	 * @param minusDays 要加几天
+	 * @return
+	 */
+	public static Date minusDays(Date date, int minusDays) {
+		LocalDateTime localDateTime = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
+		return Date.from(localDateTime.minusDays(minusDays).atZone(ZoneId.systemDefault()).toInstant());
+	}
+	
+	/**
+	 * 日期加几个小时
+	 * @param date 原来的日期
+	 * @param minusHours 要加几个小时
+	 * @return
+	 */
+	public static Date plusHours(Date date, int plusHours) {
+		LocalDateTime localDateTime = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
+		return Date.from(localDateTime.plusHours(plusHours).atZone(ZoneId.systemDefault()).toInstant());
+	}
+	
+	/**
+	 * 日期减去几个小时
+	 * @param date 原来的日期
+	 * @param minusHours 要减几个小时
+	 * @return
+	 */
+	public static Date minusHours(Date date, int minusHours) {
+		LocalDateTime localDateTime = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
+		return Date.from(localDateTime.minusHours(minusHours).atZone(ZoneId.systemDefault()).toInstant());
+	}
+	
+	/**
+	 * 日期加几分钟
+	 * @param date 原来的日期
+	 * @param minusHours 要加几分钟
+	 * @return
+	 */
+	public static Date plusMinutes(Date date, int plusMinutes) {
+		LocalDateTime localDateTime = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
+		return Date.from(localDateTime.plusMinutes(plusMinutes).atZone(ZoneId.systemDefault()).toInstant());
+	}
+	
+	/**
+	 * 日期减去几分钟
+	 * @param date 原来的日期
+	 * @param minusHours 要减几分钟
+	 * @return
+	 */
+	public static Date minusMinutes(Date date, int minusMinutes) {
+		LocalDateTime localDateTime = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
+		return Date.from(localDateTime.minusMinutes(minusMinutes).atZone(ZoneId.systemDefault()).toInstant());
+	}
+	
+	/**
+	 * 日期加几秒
+	 * @param date 原来的日期
+	 * @param minusHours 要加几秒
+	 * @return
+	 */
+	public static Date plusSeconds(Date date, int plusSeconds) {
+		LocalDateTime localDateTime = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
+		return Date.from(localDateTime.plusSeconds(plusSeconds).atZone(ZoneId.systemDefault()).toInstant());
+	}
+	
+	/**
+	 * 日期减去几秒
+	 * @param date 原来的日期
+	 * @param minusHours 要减几秒
+	 * @return
+	 */
+	public static Date minusSeconds(Date date, int minusSeconds) {
+		LocalDateTime localDateTime = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
+		return Date.from(localDateTime.minusSeconds(minusSeconds).atZone(ZoneId.systemDefault()).toInstant());
+	}
+	
+	/**
+	 * 获取某时间的中文星期
+	 * 
+	 * @param date
+	 *            日期
+	 * @return 星期一 星期二 ...
+	 */
+	public static String getWeekByDate(Date date) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
 		String[] week = { "星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六" };
@@ -30,41 +205,13 @@ public class DateUtil {
 	}
 
 	/**
-	 * 获取当前时间的中文星期（如：星期一、星期二），每星期的第一天是星期日
-	 * 
-	 * @return
-	 */
-	public static String getWeekCSToday() {
-		return getWeekCS(new Date());
-	}
-
-	/**
-	 * 用当前日期作为文件名，一般不会重名取到的值是从当前时间的字符串格式，带有微秒，建议作为记录id
-	 * 
-	 * @return
-	 */
-	public static String getTimeStamp(String strFormat) {
-		Date currentTime = new Date();
-		return dateToString(currentTime, strFormat);
-	}
-
-	/**
-	 * 用当前日期作为文件名，一般不会重名取到的值是从1970年1月1日00:00:00开始算起所经过的微秒数
-	 * 
-	 * @return
-	 */
-	public static String getFileName() {
-		Calendar calendar = Calendar.getInstance();
-		String filename = String.valueOf(calendar.getTimeInMillis());
-		return filename;
-	}
-
-	/**
 	 * 获取两个日期之间所差的天数
 	 * 
-	 * @param from：开始日期
-	 * @param to：结束日期
-	 * @return：所差的天数(非负整数)
+	 * @param from
+	 *            开始日期
+	 * @param tot
+	 *            结束日期
+	 * @return 所差的天数(非负整数)
 	 */
 	public static int dateNum(Date from, Date to) {
 		Calendar calendar = Calendar.getInstance();
@@ -81,371 +228,5 @@ public class DateUtil {
 		Date toDate = calendar.getTime();
 		int diff = Math.abs((int) ((fromDate.getTime() - toDate.getTime()) / (24 * 3600 * 1000)));
 		return diff;
-	}
-
-	/**
-	 * 获取两个日期之间所差的周数
-	 * 
-	 * @param from
-	 * @param to
-	 * @return
-	 */
-	public static int weekNum(Date from, Date to) {
-
-		return 0;
-	}
-
-	/**
-	 * 获取date前或后nDay天的日期
-	 * 
-	 * @param date：开始日期
-	 * @param nDay：天数
-	 * @param type：正为后nDay天的日期，否则为前nDay天的日期。
-	 * @return
-	 */
-	private static Date getDate(Date date, int nDay, int type) {
-		long millisecond = date.getTime(); // 从1970年1月1日00:00:00开始算起所经过的微秒数
-		long msel = nDay * 24 * 3600 * 1000l; // 获取nDay天总的毫秒数
-		millisecond = millisecond + ((type > 0) ? msel : (-msel));
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTimeInMillis(millisecond);
-		return calendar.getTime();
-	}
-
-	/**
-	 * 获取n天后的日期
-	 * 
-	 * @param date
-	 * @param nDay
-	 * @return
-	 */
-	public static Date dateAfterNDate(Date date, int nDay) {
-		return getDate(date, nDay, 1);
-	}
-
-	/**
-	 * 获取n天后的日期
-	 * 
-	 * @param strDate
-	 * @param nDay
-	 * @return
-	 */
-	public static Date dateAfterNDate(String strDate, int nDay) {
-		Date date = stringToDate(strDate, "yyyy-MM-dd HH:mm:ss");
-		return dateAfterNDate(date, nDay);
-	}
-
-	/**
-	 * 获取n天前的日期
-	 * 
-	 * @param date
-	 * @param nDay
-	 * @return
-	 */
-	public static Date dateBeforeNDate(Date date, int nDay) {
-		return getDate(date, nDay, -1);
-	}
-
-	/**
-	 * 获取n天前的日期
-	 * 
-	 * @param strDate
-	 * @param nDay
-	 * @return
-	 */
-	public static Date dateBeforeNDate(String strDate, int nDay) {
-		Date date = stringToDate(strDate, "yyyy-MM-dd HH:mm:ss");
-		return dateBeforeNDate(date, nDay);
-	}
-
-	/**
-	 * 将日期转化为字符串的形式
-	 * 
-	 * @param date
-	 * @param strFormat
-	 * @return
-	 */
-	public static String dateToString(Date date, String strFormat) {
-		if (strFormat == null) {
-			strFormat = "yyyy-MM-dd";
-		}
-		SimpleDateFormat format = new SimpleDateFormat(strFormat);
-		return format.format(date);
-	}
-
-	/**
-	 * 将字符串转化为Date类型。如果该字符串无法转化为Date类型的数据，则返回null。
-	 * 
-	 * @param strDate
-	 * @param strFormat
-	 *            strDate和strFormat的格式要一样。即如果strDate="20061112"，则strFormat="yyyyMMdd"
-	 * @return
-	 */
-	public static Date stringToDate(String strDate, String strFormat) {
-		Date date = null;
-		try {
-			SimpleDateFormat sdf = new SimpleDateFormat(strFormat);
-			date = sdf.parse(strDate);
-			if (!sdf.format(date).equals(strDate)) {
-				date = null;
-			}
-		} catch (Exception e) {
-			date = null;
-		}
-		return date;
-	}
-
-	/**
-	 * 获取n月之前或之后的日期
-	 * 
-	 * @param date
-	 * @param nMonth
-	 * @param type(只能为-1或1)
-	 * @return
-	 */
-	public static Date getDateMonth(Date date, int nMonth, int type) {
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(date);
-		int nYear = nMonth / 12;
-		int month = nMonth % 12;
-		calendar.add(Calendar.YEAR, nYear * type);
-		Date desDate = calendar.getTime();
-		calendar.add(Calendar.MONTH, month * type);
-		if (type < 0) {
-			while (!calendar.getTime().before(desDate)) {
-				calendar.add(Calendar.YEAR, type);
-			}
-		} else {
-			while (!calendar.getTime().after(desDate)) {
-				calendar.add(Calendar.YEAR, type);
-			}
-		}
-		return calendar.getTime();
-	}
-
-	/**
-	 * 获取当前时间所在的周的最后一天（周一为第一天）
-	 * 
-	 * @param date
-	 * @return
-	 */
-	public static Date getLastDateOfWeek(Date date) {
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(date);
-		int index = calendar.get(Calendar.DAY_OF_WEEK);
-		index = (index == 1) ? (index + 7) : index;
-		date = DateUtil.dateAfterNDate(date, 8 - index);
-		return date;
-	}
-
-	/**
-	 * 获取当前时间所在的周的第一天（周一为第一天）
-	 * 
-	 * @param date
-	 * @return
-	 */
-	public static Date getFirstDateOfWeek(Date date) {
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(date);
-		int index = calendar.get(Calendar.DAY_OF_WEEK);
-		index = (index == 1) ? (index + 7) : index;
-		date = DateUtil.dateBeforeNDate(date, index - 2);
-		return date;
-	}
-
-	/**
-	 * 获取date所在的月份的最后一天 方法是获取下个月的第一天，然后获取前一天的日期
-	 * 
-	 * @param date
-	 * @return
-	 */
-	public static Date getLastDateOfMonth(Date date) {
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(date);
-		calendar.set(Calendar.DATE, 1);
-		date = calendar.getTime();
-		date = DateUtil.getDateMonth(date, 1, 1);
-		date = DateUtil.dateBeforeNDate(date, 1);
-		return date;
-	}
-
-	public static Date getFirstDateOfMonth(Date date) {
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(date);
-		calendar.set(Calendar.DATE, 1);
-		return calendar.getTime();
-	}
-
-	/**
-	 * 获取季度的最后一天
-	 * 
-	 * @param date
-	 * @return
-	 */
-	public static Date getLastDateOfSeason(Date date) {
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(date);
-		int index = calendar.get(Calendar.MONTH);
-		index = index / 3;
-		Date[] dates = new Date[4];
-		calendar.set(calendar.get(Calendar.YEAR), 2, 31);
-		dates[0] = calendar.getTime();
-		calendar.set(calendar.get(Calendar.YEAR), 5, 30);
-		dates[1] = calendar.getTime();
-		calendar.set(calendar.get(Calendar.YEAR), 8, 30);
-		dates[2] = calendar.getTime();
-		calendar.set(calendar.get(Calendar.YEAR), 11, 31);
-		dates[3] = calendar.getTime();
-		return dates[index];
-	}
-
-	/**
-	 * 创建日期date
-	 * 
-	 * @param year：年
-	 * @param month：月
-	 * @param day：日
-	 * @return
-	 */
-	public static Date createDate(int year, int month, int day) {
-		Calendar calendar = Calendar.getInstance();
-		calendar.set(year, month, day);
-		return calendar.getTime();
-	}
-
-	public static Date getDateByPattern(Date date, String pattern) {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		Date curDate = null;
-		try {
-			curDate = format.parse(format.format(date));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return curDate;
-	}
-
-	public static Date getBeginDate(Date date) {
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(date);
-		calendar.set(Calendar.HOUR, 0);
-		calendar.set(Calendar.MINUTE, 0);
-		calendar.set(Calendar.SECOND, 0);
-		return calendar.getTime();
-	}
-
-	public static Date getToDate(Date date) {
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(date);
-		calendar.set(Calendar.HOUR, 23);
-		calendar.set(Calendar.MINUTE, 59);
-		calendar.set(Calendar.SECOND, 59);
-		return calendar.getTime();
-	}
-
-	/**
-	 * 根据指定日期参数，判断该日期是否在某段时间内
-	 * 
-	 * @param curDate
-	 *            当前时间
-	 * @param begDate
-	 *            起始时间
-	 * @param endDate
-	 *            结束时间
-	 * @return
-	 */
-	public static boolean isInDate(Date curDate, Date begDate, Date endDate) {
-		boolean isIn = false;
-		//Date b = new Date(begDate.getYear(), begDate.getMonth(), begDate.getDate() - 1);
-		//Date e = new Date(endDate.getYear(), endDate.getMonth(), endDate.getDate() + 1);
-		if (null != begDate && null != endDate && curDate.after(begDate) && curDate.before(endDate)) {
-			isIn = true;
-		}
-
-		return isIn;
-	}
-
-	public static boolean beforeDate(Date d1, Date d2) {
-		if (d1.after(d2)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	/**
-	 * 获取某个日期是今年的第几周
-	 * @param date
-	 * @return
-	 */
-	public static int getWeekOfYear(Date date) {
-		Calendar c = Calendar.getInstance();
-		c.setTime(date);
-		return c.get(Calendar.WEEK_OF_YEAR);
-	}
-	
-	/**
-	 * 去掉字符串中的时分秒
-	 * @param date
-	 * @return
-	 */
-	public static String strTostrForDate(String date) throws ParseException{
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Date newDate = new Date();
-		try{
-			newDate = dateFormat.parse(date);
-		}catch(ParseException e){
-			e.printStackTrace();
-		}
-		return new SimpleDateFormat("yyyy-MM-dd").format(newDate);
-	}
-	
-	/**
-	 * 返回两个日期时间差 hour+"小时"+min+"分"+s+"秒"
-	 * @param strBegDate 长格式  
-	 * @param strEndDate 长格式
-	 * @return
-	 * @throws ParseException
-	 */
-	public static String getDifferentTime(String strBegDate, String strEndDate) throws ParseException {
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	       java.util.Date now = df.parse(strEndDate);
-	       java.util.Date date=df.parse(strBegDate);
-	       long l=now.getTime()-date.getTime();
-	       long day=l/(24*60*60*1000);
-	       long hour=(l/(60*60*1000)-day*24);
-	       long min=((l/(60*1000))-day*24*60-hour*60);
-	       long s=(l/1000-day*24*60*60-hour*60*60-min*60);
-	       //System.out.println(""+day+"天"+hour+"小时"+min+"分"+s+"秒");
-	       return hour+"小时"+min+"分"+s+"秒"; 
-	}
-	
-	/**
-	 * 返回两个日期时间差 hour+":"+min+":"+s
-	 * @param strBegDate 长格式  
-	 * @param strEndDate 长格式
-	 * @return
-	 * @throws ParseException
-	 */
-	public static String getDifferentTimes(java.util.Date begDate, java.util.Date endDate) throws ParseException {
-		long l = endDate.getTime() - begDate.getTime();
-		long day = l / (24 * 60 * 60 * 1000);
-		long hour = (l / (60 * 60 * 1000) - day * 24);
-		long min = ((l / (60 * 1000)) - day * 24 * 60 - hour * 60);
-		long s = (l / 1000 - day * 24 * 60 * 60 - hour * 60 * 60 - min * 60);
-		hour = hour+ day * 24;
-		return (hour<10 ? "0"+ hour : hour) + ":" + (min<10 ? "0"+ min : min) + ":" + (s<10 ? "0"+ s : s);
-	}
-	
-	public static void main(String[] args) {
-		//System.out.println(getWeekOfYear(new Date()));
-		try {
-			//String s = getDifferentTime("2010-12-01 10:12:33", "2010-12-01 20:00:00");
-			Date date=getFirstDateOfMonth(new Date());
-			System.out.println(date);
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 }
