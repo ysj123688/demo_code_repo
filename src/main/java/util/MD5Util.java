@@ -16,7 +16,7 @@ import java.security.MessageDigest;
 public class MD5Util {
 
 	public static void main(String[] args) throws FileNotFoundException {
-		System.out.println(md5("lzmh123"));
+		System.out.println(md5("jerome"));
 		String path = "D:\\5677d7fade538d615d979d1f.jpg";
 		File file = new File(path);
 		System.out.println(getFileMD5(file));
