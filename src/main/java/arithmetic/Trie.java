@@ -7,7 +7,6 @@ import java.util.*;
 
 /**
  * 模拟一致性Hash算法
- * http://blog.csdn.net/jerome_s/article/details/52492862
  * 这段代码网上找的，输出各个节点的负载是差不多的，但是我在想可以自己写一个达到完全的负载均衡
  * 比如：VIRTUAL_NODE_COUNT = 150
  * 维护0~(2^32)/150的数字,新加入节点就取(2^32)/150内一个没有使用过的数,
@@ -17,7 +16,7 @@ import java.util.*;
  * @author jerome_s@qq.com
  * @date 2016/9/1 9:26
  */
-public class ConsistencyHash {
+public class Trie {
 
     // 环的所有节点
     private TreeMap<Long, Object> allNodes = null;
@@ -109,7 +108,7 @@ public class ConsistencyHash {
 
     public static void main(String[] args) {
 
-        ConsistencyHash consistencyHash = new ConsistencyHash();
+        Trie consistencyHash = new Trie();
         consistencyHash.init();
 
         // 循环50次，是为了取500个数来测试效果，当然也可以用其他任何的数据来测试
