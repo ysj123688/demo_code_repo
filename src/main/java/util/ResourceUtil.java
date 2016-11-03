@@ -1,7 +1,8 @@
 package util;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ResourceBundle;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 /**
@@ -25,14 +26,20 @@ public class ResourceUtil {
 	 * @param request
 	 * @return
 	 */
-	/*public static String getRequestPath(HttpServletRequest request) {
+	public static String getRequestPath(HttpServletRequest request) {
 		String requestPath = request.getRequestURI();
 		if (requestPath.indexOf("&") > -1) {// 去掉其他参数
 			requestPath = requestPath.substring(0, requestPath.indexOf("&"));
 		}
 		requestPath = requestPath.substring(request.getContextPath().length() + 1);// 去掉项目路径
 		return requestPath;
-	}*/
+		/*String   url  = request.getScheme()+"://"; //请求协议 http 或 https    
+		url+=request.getHeader("host");  // 请求服务器    
+		url+=request.getRequestURI();     // 工程名      
+		if(request.getQueryString()!=null) //判断请求参数是否为空  
+		url+="?"+request.getQueryString();   // 参数   
+		System. out.println(url);    */
+	}
 
 
 	/**
