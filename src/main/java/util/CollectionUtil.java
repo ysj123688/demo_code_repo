@@ -24,6 +24,7 @@ public class CollectionUtil {
 	 */
 	public static void sortList() {
 		// Collections.sort(重写toString()进行排序区分)
+		// 或者根据自己的业务字段进行排序o1.getAge().compareTo(o2.getAge());
 		List<ObjectName> list = new ArrayList<ObjectName>();
 		Collections.sort(list, new Comparator<ObjectName>() {
 			public int compare(ObjectName o1, ObjectName o2) {
