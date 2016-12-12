@@ -7,7 +7,6 @@ package util;
 public class SystemUtil {
 
 	public static void main(String[] args) {
-		System.out.println(isWindowsOS());
 	}
 
 	/**
@@ -22,5 +21,19 @@ public class SystemUtil {
 			isWindowsOS = true;
 		}
 		return isWindowsOS;
+	}
+
+	/**
+	 * 判断当前操作是否Linux.
+	 * 
+	 * @return true
+	 */
+	public static boolean isLinuxOS() {
+		boolean isLinuxOS = false;
+		String osName = System.getProperty("os.name");
+		if (osName.toLowerCase().indexOf("linux") > -1) {
+			isLinuxOS = true;
+		}
+		return isLinuxOS;
 	}
 }
