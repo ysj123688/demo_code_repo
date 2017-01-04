@@ -24,9 +24,12 @@ import org.slf4j.LoggerFactory;
  */
 public class TestLog4j {
 	public static void main(String[] args) {
-		// private Logger logger = LoggerFactory.getLogger(this.getClass()); // 日志记录
-		Logger logger = LoggerFactory.getLogger(new TestLog4j().getClass()); // 日志记录
+//		 private Logger logger = LoggerFactory.getLogger(this.getClass()); // 日志记录
+		Logger logger = LoggerFactory.getLogger(TestLog4j.class); // 日志记录
+		logger.debug("测试debug级别日志");
 		logger.info("测试info级别日志");
+		logger.warn("测试warn级别日志");
+		logger.error("测试error级别日志");
 		System.out.println("测试结束");
 	}
 	
