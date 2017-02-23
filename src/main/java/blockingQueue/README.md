@@ -1,3 +1,5 @@
+#阻塞队列（BlockingQueue）例子
+
 BlockingQueue 接口是java collections框架的一部分，它主要用于实现生产者-消费者问题。
 
 ##BlockingQueue的特性
