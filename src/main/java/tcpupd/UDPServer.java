@@ -2,23 +2,25 @@ package tcpupd;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.InetAddress;
 
 /**
- * 服务端,发送消息给客户端
+ * 服务端
+ * 接收端，先启动
+ *
  * @author JeromeThinkPad
  * @see 《Java开发实战经典》
- *
  */
 public class UDPServer {
-	public static void main(String args[]) throws Exception {
-		DatagramSocket ds = null; // 定义发送数据报的对象
-		DatagramPacket dp = null; // 声明DatagramPacket对象
-		ds = new DatagramSocket(3000); // 服务端在3000端口上等待服务器发送信息\
-		String str = "hello World!!!";
-		dp = new DatagramPacket(str.getBytes(), str.length(), InetAddress.getByName("localhost"), 9000); // 所有的信息使用buf保存
-		System.out.println("发送信息。");
-		ds.send(dp); // 发送信息出去
-		ds.close();
-	}
+    public static void main(String args[]) throws Exception {
+        // 定义接收数据报的对象，客户端在9000端口上等待服务器发送信息
+        DatagramSocket ds = new DatagramSocket(9000);
+        // 开辟空间，以接收数据
+        byte[] buf = new byte[1024];
+        DatagramPacket dp = new DatagramPacket(buf, 1024);
+        // 接收数据
+        ds.receive(dp);
+        String str = new String(dp.getData(), 0, dp.getLength());
+        System.out.println(str + "from " + dp.getAddress().getHostAddress() + "：" + dp.getPort());
+        ds.close();
+    }
 }
