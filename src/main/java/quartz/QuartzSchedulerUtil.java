@@ -14,7 +14,8 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Quartz定时调度类
- * 
+ * 配置文件：quartz.properties
+ *
  * @author JeromeThinkPad
  *
 <dependency>
@@ -47,7 +48,7 @@ public class QuartzSchedulerUtil {
 			Trigger testTrigger = TriggerBuilder.newTrigger()
 					.withIdentity("testTrigger", "testTriggerGroup")
 					.withSchedule(CronScheduleBuilder.cronSchedule("0/10 * * * * ?")).startNow().build();
-			
+
 			// 把作业和触发器注册到任务调度中
 			scheduler.scheduleJob(testJob, testTrigger);
 

@@ -1,4 +1,4 @@
-package blockingQueue;
+package blocking.queue;
 
 /**
  * 消息
