@@ -124,9 +124,21 @@
 		    <artifactId>commons-email</artifactId>
 		    <version>1.4</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.jerome</groupId>
+			<artifactId>common</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.13</version>
+		</dependency>
 		
 	</dependencies>
-	
+
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
 		<resources>
@@ -164,5 +176,9 @@
             <name>Aspose Java API</name>
             <url>http://maven.aspose.com/artifactory/simple/ext-release-local/</url>
         </repository>
+		<repository>
+			<id>jerome-maven-repo</id>
+			<url>https://raw.githubusercontent.com/jeromesuz/maven-repo/master/repository</url>
+		</repository>
     </repositories>
 </project>

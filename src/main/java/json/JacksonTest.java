@@ -1,54 +1,49 @@
 package json;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
+import org.codehaus.jackson.map.ObjectMapper;
 
 /**
- * 
- * @see 文档：https://github.com/alibaba/fastjson/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%
- *      E9%A2%98
- * @author JeromeThinkPad
  *
+ * 
+ * @author jerome_s@qq.com
+ * @date 2017/3/21 15:05
  */
 public class JacksonTest {
-	public static void main(String[] args) {
-		json2List();
+	public static void main(String[] args) throws IOException {
+		json2Model();
 	}
 
 	/**
 	 * 序列化
 	 */
-	public static void list2Json() {
-		List<Person> persons = new ArrayList<Person>();
+	public static void list2Json() throws IOException {
+		List<Person> persons = new ArrayList<>();
 		for (int i = 0; i < 5; i++) {
 			Person p = new Person();
 			p.setName("name" + i);
 			p.setAge(i * 5);
 			persons.add(p);
 		}
-		String jsonString = JSON.toJSONString(persons);
+
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonString = mapper.writeValueAsString(persons);
 		System.out.println(jsonString);
 	}
 
 	/**
 	 * 反序列化
 	 */
-	public static void json2Model() {
+	public static void json2Model() throws IOException {
 		String jsonStr = "{\"name\":\"name0\",\"age\":10}";
-		Person person =  JSON.parseObject(jsonStr, Person.class);
+		ObjectMapper mapper = new ObjectMapper();
+		Person person = mapper.readValue(jsonStr, Person.class);
 		System.out.println(person.toString());
 	}
 
-	// 反序列化
-	public static void json2List() {
-		String jsonStr = "[{\"name\":\"name0\",\"age\":0},{\"name\":\"name1\",\"age\":5},{\"name\":\"name2\",\"age\":10}]";
-		List<Person> ps = JSON.parseObject(jsonStr, new TypeReference<List<Person>>() {});
-		for (int i = 0; i < ps.size(); i++) {
-			Person p = ps.get(i);
-			System.out.println(p.toString());
-		}
-	}
 }
