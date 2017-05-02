@@ -13,7 +13,13 @@ import java.util.Date;
 public class SipmleDateFormatSecurityError {
 	public static void main(String[] args) {
 		// 单例的SimpleDateFormat类在多线程环境中容易出现日期转换错误
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		ThreadLocal<SimpleDateFormat> sdf = new ThreadLocal<SimpleDateFormat>() {
+			@Override
+			protected SimpleDateFormat initialValue() {
+				return new SimpleDateFormat("yyyyMMdd HHmm");
+			}
+		};
 		
 		// 9个数组
 		String[] dateStringArr = new String[]{
@@ -30,7 +36,8 @@ public class SipmleDateFormatSecurityError {
 		
 		MyThread[] threadArr = new MyThread[9];
 		for (int i = 0; i < threadArr.length; i++) {
-			threadArr[i] = new MyThread(sdf, dateStringArr[i]);
+			//threadArr[i] = new MyThread(sdf, dateStringArr[i]);
+			threadArr[i] = new MyThread(sdf.get(), dateStringArr[i]);
 		}
 		
 		for (int i = 0; i < threadArr.length; i++) {

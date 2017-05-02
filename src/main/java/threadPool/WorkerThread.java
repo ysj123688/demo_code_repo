@@ -1,4 +1,4 @@
-package threadPool;
+package threadpool;
 
 /**
  * 工作中的线程
