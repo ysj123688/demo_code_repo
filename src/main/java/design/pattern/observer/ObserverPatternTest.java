@@ -18,7 +18,7 @@ public class ObserverPatternTest {
 
         Product product = new Product(23.5D, "《必然》");
 
-        // 生命观察者
+        // 声明观察者
         Observer observer1 = new WebObserver();
         Observer observer2 = new MailObserver();
 
@@ -75,7 +75,7 @@ class Product {
     public void setPrice(Double price) {
         this.price = price;
         // 价格有修改通知观察者
-        notifyObserver();
+       // notifyObserver();
     }
 
     public String getName() {
@@ -84,6 +84,8 @@ class Product {
 
     public void setName(String name) {
         this.name = name;
+        // 价格有修改通知观察者
+        notifyObserver();
     }
 
     public HashSet<Observer> getObservers() {
