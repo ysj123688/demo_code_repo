@@ -1,11 +1,10 @@
 package quartz;
 
-import com.jerome.common.util.DateUtils;
+//import com.jerome.common.util.DateUtils;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
-import java.util.Date;
 
 public class TestJobService1 implements Job {
 
@@ -26,7 +25,7 @@ public class TestJobService1 implements Job {
 
 	public void test(){
 		System.out.println(from);
-		System.out.println(DateUtils.formatDate(new Date(), DateUtils.YYYYMMDDHHMMSS));
+//		System.out.println(DateUtils.formatDate(new Date(), DateUtils.YYYYMMDDHHMMSS));
 		try {
 			Thread.sleep(15000);
 		} catch (InterruptedException e) {
