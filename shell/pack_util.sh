@@ -27,28 +27,38 @@ match_max 100000
 expect -exact ""
 
 # pack
+sleep 0.5
 send -- "cd $pack_path\r"
 expect -exact "cd $pack_path"
+sleep 0.5
 send -- "mvn clean install -Dskip.unit.tests=true\r"
 expect -exact "mvn clean install -Dskip.unit.tests=true"
 
 # scp
+sleep 0.5
 send -- "scp $scp_source_path $service_user@$service_ip:$scp_to_path\r"
 expect -exact "$service_user@$service_ip's password: "
+sleep 0.5
 send -- "$service_pwd\r"
 expect -exact ""
 
 # restart app
+sleep 0.5
 send -- "ssh -p 22 $service_user@$service_ip\r"
 expect -exact "$service_user@$service_ip's password: "
+sleep 0.5
 send -- "$service_pwd\r"
 expect -exact ""
+sleep 0.5
 send -- "cd $service_app_path\r"
 expect -exact ""
+sleep 0.5
 send -- "ln -sf $app_name-\$(date +'%Y%m%d').jar $app_name-current.jar\r"
 expect -exact ""
+sleep 0.5
 send -- "./boot.sh\r"
 expect -exact ""
+sleep 0.5
 send -- "tailf log/spring.log\r"
 expect -exact ""
 
